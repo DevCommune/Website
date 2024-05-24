@@ -1,0 +1,121 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+//new member from schema
+
+model Profile {
+  id             String  @id @default(uuid())
+  userId         String
+  userName       String
+  email          String
+  name           String
+  about          String  @db.LongText
+  image          String
+  coverImage     String
+  country        String
+  state          String
+  city           String
+  address        String
+  collegeName    String  @db.LongText
+  degree         String  @db.MediumText
+  branch         String  @db.MediumText
+  presentYear    String
+  graduationYear String
+  contact        String
+  whatsapp       String
+  linkedIn       String
+  github         String
+  twitter        String
+  instagram      String
+  portfolio      String
+  webdev         Boolean @default(false)
+  appdev         Boolean @default(false)
+  ml             Boolean @default(false)
+  ai             Boolean @default(false)
+  blockchain     Boolean @default(false)
+  cloud          Boolean @default(false)
+  uiux           Boolean @default(false)
+  coding         Boolean @default(false)
+  c              Boolean @default(false)
+  cpp            Boolean @default(false)
+  java           Boolean @default(false)
+  python         Boolean @default(false)
+  javascript     Boolean @default(false)
+  nextjs         Boolean @default(false)
+  nodejs         Boolean @default(false)
+  techStack      String  @db.LongText
+  experience     String  @db.LongText
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  projects  Project[]
+  purchased Purchase[]
+
+  @@fulltext([name, collegeName, degree, branch, techStack])
+}
+
+model Project {
+  id          String  @id @default(uuid())
+  title       String  @db.MediumText
+  description String  @db.LongText
+  banner      String
+  githubLink  String
+  demoLink    String
+  price       Int     @default(0)
+  techStack   String  @db.MediumText
+  react       Boolean @default(false)
+  nextjs      Boolean @default(false)
+  mongodb     Boolean @default(false)
+  express     Boolean @default(false)
+  nodejs      Boolean @default(false)
+  firebase    Boolean @default(false)
+  mysql       Boolean @default(false)
+  postgresql  Boolean @default(false)
+  graphql     Boolean @default(false)
+  html        Boolean @default(false)
+  css         Boolean @default(false)
+  javascript  Boolean @default(false)
+  typescript  Boolean @default(false)
+  shadcn      Boolean @default(false)
+  free        Boolean @default(false)
+  profileId   String
+
+  likeCount Int @default(0)
+  viewCount Int @default(0)
+
+  Purchase Purchase[]
+  Profile  Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId])
+}
+
+model Purchase {
+  id              String    @id @default(uuid())
+  userName        String
+  userId          String
+  profileId       String
+  projectId       String
+  projectOwnerId  String
+  purchasingDate  DateTime? @default(now())
+  currency        String
+  totalAmount     Int
+  paymentStatus   Boolean   @default(false)
+  paymentIntentId String    @unique
+  purchasedAt     DateTime  @default(now())
+
+  Profile Profile @relation(fields: [profileId], references: [id])
+
+  Project Project? @relation(fields: [projectId], references: [id])
+
+  @@index([profileId])
+  @@index([projectId])
+}
