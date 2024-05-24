@@ -10,9 +10,11 @@ import { Spotlight } from "./Spotlight";
 import DotPattern from "../magicui/dot-pattern";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { useAuth } from "@clerk/nextjs";
 
 export default function HeroSection() {
   const [isLoading, setIsLoading] = useState(false);
+  const { userId } = useAuth();
   return (
     <div className="w-full z-20 py-10 lg:py-0 mx-auto min-h-[84vh] lg:min-h-screen h-full flex flex-col items-center lg:justify-center leading-6">
       <Spotlight
@@ -36,17 +38,31 @@ export default function HeroSection() {
           tenetur accusantium corporis autem blanditiis.
         </p>
         <div className="flex justify-center items-center gap-3 mt-10 lg:mt-3">
-          <Link
+          {userId ? (
+            <Link
             onClick={() => {
               setIsLoading(true);
             }}
-            href={"/profile/new"}
+            href={`/profile/${userId}`}
             className="mt-5 ml-7"
           >
             <Button className="animate-buttonheartbeat rounded-md bg-blue-600 hover:bg-blue-500 text-sm font-semibold text-white">
-              Become a Member
+              Create your profile
             </Button>
           </Link>
+          ):(
+            <Link
+            onClick={() => {
+              setIsLoading(true);
+            }}
+            href={"/sign-up"}
+            className="mt-5 ml-7"
+          >
+            <Button className="animate-buttonheartbeat rounded-md bg-blue-600 hover:bg-blue-500 text-sm font-semibold text-white">
+              Get Started
+            </Button>
+          </Link>
+          )}
           <Link href="/" target="_blank" className="mt-5">
             <Button className="flex gap-1">
               Join Discord
