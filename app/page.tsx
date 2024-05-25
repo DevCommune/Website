@@ -23,7 +23,7 @@ const page = () => {
         <div className="flex justify-center items-center w-full mb-[7rem]">
           <FAQ />
         </div>
-        <div className="flex justify-center items-center w-full mb-[7rem] px-10">
+        <div className="flex justify-center items-center w-full mb-[7rem] px-5 lg:px-10">
           <Testimonials />
         </div>
       </div>

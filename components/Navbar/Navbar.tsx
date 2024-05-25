@@ -43,6 +43,7 @@ import {
 import { Skeleton } from "../ui/skeleton";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import SearchInput from "../SearchInput/SearchInput";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -66,48 +67,11 @@ const NavBar = () => {
   const { userId } = useAuth();
   const { user } = useUser();
   const pathname = usePathname();
+  const isCommunityPage = pathname.includes("/community");
 
   return (
     <div className="flex fixed top-0 left-0 min-w-full justify-between px-5 py-3 border-b z-40 dark:bg-black/50 backdrop-blur-lg bg-white ">
       <div className="flex justify-between w-full min-[825px]:hidden">
-        {/* <Dialog>
-          <SheetTrigger className="p-2 transition">
-            <GiHamburgerMenu />
-          </SheetTrigger>
-          <SheetContent side="left">
-            <SheetHeader>
-              <SheetTitle>Next Starter</SheetTitle>
-            </SheetHeader>
-            <div className="flex flex-col space-y-3 mt-[1rem]">
-              <DialogClose asChild>
-                <Link href="/">
-                  <Button variant="outline" className="w-full">
-                    Home
-                  </Button>
-                </Link>
-              </DialogClose>
-              <DialogClose asChild>
-                <Link href={`/profile/${userId}`}>
-                  <Button variant="outline" className="w-full">
-                    Dashboard
-                  </Button>
-                </Link>
-              </DialogClose>
-              <DialogClose asChild>
-                {!userId && (
-                  <Link
-                    href="/sign-in"
-                    legacyBehavior
-                    passHref
-                    className="cursor-pointer"
-                  >
-                    <Button variant="outline">Sign Up</Button>
-                  </Link>
-                )}
-              </DialogClose>
-            </div>
-          </SheetContent>
-        </Dialog> */}
         <Link href="/" className="pl-2 flex items-center justify-center">
           <Image
             src="/logo/devcommune.png"
@@ -148,9 +112,7 @@ const NavBar = () => {
               <GiHamburgerMenu />
             </SheetTrigger>
             <SheetContent side="left">
-              <SheetHeader>
-                <SheetTitle>Next Starter</SheetTitle>
-              </SheetHeader>
+              <SheetHeader>{/* <SheetTitle></SheetTitle> */}</SheetHeader>
               <div className="flex flex-col space-y-3 mt-[1rem]">
                 <DialogClose asChild>
                   <Link href="/">
@@ -178,13 +140,23 @@ const NavBar = () => {
                     </Link>
                   )}
                 </DialogClose>
+                <DialogClose>
+                  <DialogClose asChild>
+                    <Link href="/community">
+                      <Button variant="outline" className="w-full">
+                        Community
+                      </Button>
+                    </Link>
+                  </DialogClose>
+                </DialogClose>
               </div>
             </SheetContent>
           </Dialog>
         </div>
       </div>
-      <NavigationMenu>
-        <NavigationMenuList className="max-[825px]:hidden flex gap-3 w-[100%] justify-between">
+
+      <div className="flex gap-5 items-center">
+        <div className="max-[825px]:hidden flex gap-3 w-[100%] justify-between">
           <Link href="/" className="pl-2 flex items-center justify-center">
             <Image
               src="/logo/devcommune.png"
@@ -194,17 +166,21 @@ const NavBar = () => {
               className=""
             />
           </Link>
-        </NavigationMenuList>
-      </NavigationMenu>
+        </div>
+        <div className="pl-5">
+          <Link
+            href="/community"
+            target="blank"
+            className="max-[825px]:hidden flex items-center gap-1"
+          >
+            <p className="pl-1">Community</p>
+            <SquareArrowOutUpRight size={16} className="text-gray-500 mt-1" />
+          </Link>
+        </div>
+      </div>
+
       <div className="lg:flex items-center gap-5 hidden">
-        <Link
-          href="/community"
-          target="blank"
-          className="max-[825px]:hidden flex items-center gap-1"
-        >
-          <p className="pl-1">Community</p>
-          <SquareArrowOutUpRight size={16} className="text-gray-500" />
-        </Link>
+        {isCommunityPage && <SearchInput />}
         {userId ? (
           <>
             {pathname.includes("/profile") ? (

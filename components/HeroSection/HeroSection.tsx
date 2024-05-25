@@ -38,7 +38,7 @@ export default function HeroSection() {
           voluptatum accusamus ipsam dolore sapiente, maiores similique, eius
           tenetur accusantium corporis autem blanditiis.
         </p>
-        <div className="flex justify-center items-center gap-3 mt-10 lg:mt-3">
+        <div className="flex justify-center items-center gap-4 mt-6 lg:mt-3">
           {user ? (
             <Link
             onClick={() => {
@@ -47,8 +47,8 @@ export default function HeroSection() {
             href={`/profile/${username}`}
             className="mt-5 ml-7"
           >
-            <Button className="animate-buttonheartbeat rounded-md bg-blue-600 hover:bg-blue-500 text-sm font-semibold text-white">
-              Create your profile
+            <Button className="animate-buttonheartbeat rounded-md bg-blue-600 hover:bg-blue-500 text-[11px] md:text-sm font-semibold text-white lg:text-md">
+              Create profile
             </Button>
           </Link>
           ):(
@@ -59,19 +59,19 @@ export default function HeroSection() {
             href={"/sign-up"}
             className="mt-5 ml-7"
           >
-            <Button className="animate-buttonheartbeat rounded-md bg-blue-600 hover:bg-blue-500 text-sm font-semibold text-white">
+            <Button className="animate-buttonheartbeat rounded-md bg-blue-600 hover:bg-blue-500 text-[11px] md:text-sm lg:text-md font-semibold text-white ">
               Get Started
             </Button>
           </Link>
           )}
-          <Link href="/" target="_blank" className="mt-5">
-            <Button className="flex gap-1">
+          <Link href="/" target="_blank" className="mt-5 ">
+            <Button className="flex gap-1 text-[13px] md:text-sm lg:text-md">
               Join Discord
               <ArrowRight className="w-4 h-4" />
             </Button>
           </Link>
           <Link
-            href="/"
+            href="https://github.com/DevCommune"
             target="_blank"
             className="animate-buttonheartbeat border p-2 rounded-full mt-5 hover:dark:bg-black hover:cursor-pointer"
           >

@@ -58,9 +58,6 @@ const ProfileCard = ({ profile }: { profile: ProfileWithProjects }) => {
         type: "spring",
         bounce: 0.7,
       }}
-      // onClick={() => {
-      //   router.push(`/profile-details/${profile.id}`);
-      // }}
       className={cn("col-span-1 shadow-md ")}
     >
       <Card>

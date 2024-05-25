@@ -180,7 +180,7 @@ const ProfileDetailsClient = ({
               <div className="flex flex-col gap-3">
                 <IconItem>
                   <BiSolidSchool size={18} className="hidden lg:block " />
-                  <div className="flex flex-col">
+                  <div className="flex flex-col lg:flex-row">
                     <p className="text-sm md:text-md font-semibold">
                       College name :
                     </p>

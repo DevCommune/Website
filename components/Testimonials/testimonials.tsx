@@ -80,7 +80,7 @@ const ReviewCard = ({
 
 const Testimonials = () => {
   return (
-    <div className="relative z-10 flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background py-20 md:shadow-md">
+    <div className="relative z-10 flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background py-16 md:shadow-md">
       <Marquee pauseOnHover className="[--duration:20s]">
         {firstRow.map((review) => (
           <ReviewCard key={review.username} {...review} />

@@ -2,22 +2,18 @@ import prismadb from "@/lib/prismadb";
 
 export const getProfiles = async (searchParams: {
   name: string;
-  collegeName: string;
-  degree: string;
-  branch: string;
-  techStack: string;
+  userName: string;
 }) => {
   try {
-    const { name, collegeName, degree, branch, techStack } = searchParams;
+    const { name, userName } = searchParams;
     const profiles = await prismadb.profile.findMany({
       where: {
         name: {
           contains: name,
         },
-        collegeName,
-        degree,
-        branch,
-        techStack,
+        userName: {
+          contains: userName,
+        },
       },
 
       include: { projects: true },
