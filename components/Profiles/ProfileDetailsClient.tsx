@@ -5,6 +5,8 @@ import { ProfileWithProjects } from "../Forms/AddProfileForm";
 import useLocation from "@/hooks/useLocation";
 import Image from "next/image";
 import { Skeleton } from "../ui/skeleton";
+import Link from "next/link";
+import { RiContactsBook2Fill } from "react-icons/ri";
 import {
   FaGithub,
   FaInstagram,
@@ -20,6 +22,27 @@ import {
   MapPin,
   School,
 } from "lucide-react";
+import {
+  FaCode,
+  FaJava,
+  FaNodeJs,
+  FaPython,
+  FaShieldAlt,
+} from "react-icons/fa";
+import { HiMiniGlobeAlt } from "react-icons/hi2";
+import { MdEmail } from "react-icons/md";
+import { Bot, Terminal } from "lucide-react";
+import {
+  MdArrowOutward,
+  MdCloudUpload,
+  MdOutlineAppShortcut,
+} from "react-icons/md";
+import { TbBrandCpp } from "react-icons/tb";
+import { RiNextjsFill, RiVerifiedBadgeFill } from "react-icons/ri";
+import { IoLogoJavascript, IoSettings } from "react-icons/io5";
+import { CgWebsite } from "react-icons/cg";
+import { GiFrozenBlock } from "react-icons/gi";
+import { MdLocationPin } from "react-icons/md";
 import { IoLogoWhatsapp, IoSchoolSharp } from "react-icons/io5";
 import { Separator } from "../ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -63,7 +86,7 @@ const ProfileDetailsClient = ({
 
         {profile.image ? (
           <div className="absolute bottom-2 left-3 lg:bottom-3 lg:left-5 bg-gradient-to-r from-[#fa8cff] via-[#9182ff] to-[#0476ff] rounded-full">
-            <div className="w-[100px] h-[100px] lg:w-[200px] lg:h-[200px] rounded-full flex items-center justify-center">
+            <div className="w-[100px] h-[100px] lg:w-[200px] lg:h-[200px] rounded-full flex items-center justify-center overflow-hidden">
               <Image
                 src={profile.image}
                 alt={profile.name + "profile image"}
@@ -223,16 +246,227 @@ const ProfileDetailsClient = ({
             </Tbaspace>
           </TabsContent>
           <TabsContent value="location">
-            <Tbaspace>location details</Tbaspace>
+            <Tbaspace>
+              <div className="flex flex-col gap-3">
+                <IconItem>
+                  <MdLocationPin size={18} className="hidden lg:block " />
+                  <div className="flex flex-col lg:flex-row">
+                    <p className="text-sm md:text-md font-semibold">
+                      Country :
+                    </p>
+                    <p className="text-sm md:text-md pl-0 lg:pl-1">
+                      {profile.country}
+                    </p>
+                  </div>
+                </IconItem>
+                <IconItem>
+                  <MdLocationPin size={18} className="hidden lg:block " />
+                  <p className="text-sm md:text-md font-semibold">State :</p>
+                  <p className="text-sm md:text-md pl-1">{profile.state}</p>
+                </IconItem>
+                <IconItem>
+                  <MdLocationPin size={16} className="hidden lg:block " />
+                  <p className="text-sm md:text-md font-semibold">City :</p>
+                  <p className="text-sm md:text-md pl-1">{profile.city}</p>
+                </IconItem>
+              </div>
+            </Tbaspace>
           </TabsContent>
           <TabsContent value="skills">
-            <Tbaspace>skills details</Tbaspace>
+            <Tbaspace>
+              <div className="flex flex-col gap-3">
+                <IconItem>
+                  <BiSolidSchool size={18} className="hidden lg:block " />
+                  <div className="flex flex-col lg:flex-row">
+                    <p className="text-sm md:text-md font-semibold">
+                      Technologies Acquired :
+                    </p>
+                    <div className="flex items-center gap-1.5">
+                      {profile.webdev && (
+                        <span className="text-sm">
+                          <FaCode
+                            size={18}
+                            className="text-gray-600 dark:text-slate-200"
+                          />
+                        </span>
+                      )}
+                      {profile.appdev && (
+                        <span className="text-sm">
+                          <MdOutlineAppShortcut
+                            size={18}
+                            className="text-gray-600 dark:text-slate-200"
+                          />
+                        </span>
+                      )}
+                      {profile.uiux && (
+                        <span className="text-sm">
+                          <CgWebsite
+                            size={18}
+                            className="text-gray-600 dark:text-slate-200"
+                          />
+                        </span>
+                      )}
+                      {profile.ai && (
+                        <span className="text-sm">
+                          <Bot
+                            size={18}
+                            className="text-gray-600 dark:text-slate-200"
+                          />
+                        </span>
+                      )}
+                      {profile.ml && (
+                        <span className="text-sm">
+                          <IoSettings
+                            size={18}
+                            className="text-gray-600 dark:text-slate-200"
+                          />
+                        </span>
+                      )}
+                      {profile.blockchain && (
+                        <span className="text-sm">
+                          <GiFrozenBlock
+                            size={18}
+                            className="text-gray-600 dark:text-slate-200"
+                          />
+                        </span>
+                      )}
+                      {profile.cloud && (
+                        <span className="text-sm">
+                          <MdCloudUpload
+                            size={18}
+                            className="text-gray-600 dark:text-slate-200"
+                          />
+                        </span>
+                      )}
+                      {profile.coding && (
+                        <span className="text-sm">
+                          <Terminal
+                            size={18}
+                            className="text-gray-600 dark:text-slate-200"
+                          />
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </IconItem>
+                <IconItem>
+                  <IoSchoolSharp size={18} className="hidden lg:block " />
+                  <p className="text-sm md:text-md font-semibold">
+                    Coding Languages :
+                  </p>
+                  <div className="flex items-center gap-1.5">
+                    {profile.c && <span className="text-sm">C</span>}
+                    {profile.cpp && (
+                      <span className="text-sm">
+                        <TbBrandCpp
+                          size={18}
+                          className="text-gray-600 dark:text-slate-200"
+                        />
+                      </span>
+                    )}
+                    {profile.java && (
+                      <span className="text-sm">
+                        <FaJava
+                          size={18}
+                          className="text-gray-600 dark:text-slate-200"
+                        />
+                      </span>
+                    )}
+                    {profile.javascript && (
+                      <span className="text-sm">
+                        <IoLogoJavascript
+                          size={18}
+                          className="text-gray-600 dark:text-slate-200"
+                        />
+                      </span>
+                    )}
+                    {profile.nextjs && (
+                      <span className="text-sm">
+                        <RiNextjsFill
+                          size={18}
+                          className="text-gray-600 dark:text-slate-200"
+                        />
+                      </span>
+                    )}
+                    {profile.python && (
+                      <span className="text-sm">
+                        <FaPython
+                          size={18}
+                          className="text-gray-600 dark:text-slate-200"
+                        />
+                      </span>
+                    )}
+                    {profile.nodejs && (
+                      <span className="text-sm">
+                        <FaNodeJs
+                          size={17}
+                          className="text-gray-600 dark:text-slate-200"
+                        />
+                      </span>
+                    )}
+                  </div>
+                </IconItem>
+              </div>
+            </Tbaspace>
           </TabsContent>
           <TabsContent value="contact">
-            <Tbaspace>ciontact details</Tbaspace>
+            <Tbaspace>
+              <div className="flex flex-col gap-3">
+                <IconItem>
+                  <RiContactsBook2Fill size={18} className="hidden lg:block " />
+                  <div className="flex flex-col lg:flex-row">
+                    <p className="text-sm md:text-md font-semibold">
+                      Contact Number :
+                    </p>
+                    <p className="text-sm md:text-md pl-0 lg:pl-1">
+                      {profile.contact}
+                    </p>
+                  </div>
+                </IconItem>
+                {profile.whatsapp && (
+                  <IconItem>
+                    <IoLogoWhatsapp size={18} className="hidden lg:block " />
+                    <div className="flex flex-col lg:flex-row">
+                      <p className="text-sm md:text-md font-semibold">
+                        WhatsApp Number :
+                      </p>
+                      <p className="text-sm md:text-md pl-0 lg:pl-1">
+                        {profile.whatsapp}
+                      </p>
+                    </div>
+                  </IconItem>
+                )}
+                {profile.email && (
+                  <IconItem>
+                    <MdEmail size={18} className="hidden lg:block " />
+                    <div className="flex flex-col lg:flex-row">
+                      <p className="text-sm md:text-md font-semibold">
+                        Email :
+                      </p>
+                      <p className="text-sm md:text-md pl-0 lg:pl-1">
+                        <a href={"mailto:"+profile.email}>{profile.email}</a>
+                      </p>
+                    </div>
+                  </IconItem>
+                )}
+              </div>
+            </Tbaspace>
           </TabsContent>
           <TabsContent value="experience">
-            <Tbaspace>Experience details</Tbaspace>
+            <Tbaspace>
+              <div>
+                <IconItem>
+                  <div className="flex flex-col lg:flex-row">
+                    <p className="text-sm md:text-md font-semibold">
+                      Experience :
+                    </p>
+                    <p className="text-sm md:text-md pl-0 lg:pl-1">
+                      {profile.experience}
+                    </p>
+                  </div>
+                </IconItem>
+              </div>
+            </Tbaspace>
           </TabsContent>
         </Tabs>
       </div>
@@ -245,7 +479,13 @@ const ProfileDetailsClient = ({
               </h1>
               <div className="grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-3 gap-6">
                 {profile.projects.map((project) => {
-                  return <ProjectCard profile={profile} project={project} key={project.id} />;
+                  return (
+                    <ProjectCard
+                      profile={profile}
+                      project={project}
+                      key={project.id}
+                    />
+                  );
                 })}
               </div>
             </>
