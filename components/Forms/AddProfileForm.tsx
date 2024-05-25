@@ -37,10 +37,12 @@ import Image from "next/image";
 import { UploadButton } from "@/hooks/uploadthing";
 import {
   CirclePlus,
+  DraftingCompass,
   Eye,
   Loader2,
   PackagePlus,
   PencilLine,
+  ShieldCheck,
   Terminal,
   Trash,
   XCircle,
@@ -64,6 +66,7 @@ import { useConfirm } from "@/hooks/use-confirm";
 import AddProjectForm from "../Projects/AddProjectForm";
 import { Separator } from "../ui/separator";
 import ProjectCard from "../Projects/ProjectCard";
+import AdminDrawerModal from "../AdminDrawer/AdminDrawer";
 
 interface AddProfileFormProps {
   profile: ProfileWithProjects | null;
@@ -275,7 +278,6 @@ const AddProfileForm = ({ profile }: AddProfileFormProps) => {
       axios
         .post("/api/profile", values)
         .then((res) => {
-          
           toast("Profile created successfully 🎉");
           SendEmail();
           router.push(`/profile/${res.data.id}`);
@@ -927,6 +929,26 @@ const AddProfileForm = ({ profile }: AddProfileFormProps) => {
                       >
                         <Eye className="mr-2 h-4 w-4" /> Preview
                       </Button>
+                    )}
+                  </div>
+                </Alert>
+              )}
+              {profile && profile.verified && (
+                <Alert className="bg-gradient-to-r from-[#fb3a5d] via-[#f97316] to-[#eab308]  dark:text-white mt-1 lg:mt-3 text-black">
+                  <ShieldCheck className="h-5 w-5 stroke-black dark:stroke-white" />
+                  <AlertTitle>Add Your Projects</AlertTitle>
+                  <div className="flex flex-row gap-8 mt-2 items-center">
+                    <AlertDescription>
+                      Congratulation 🎉 Your profile is verified
+                      <div>Extra fetaures are unlocked for you</div>
+                    </AlertDescription>
+                    {profile && (
+                      <AdminDrawerModal profile={profile}>
+                        <Button type="button" className="w-[120px]">
+                          <DraftingCompass className="mr-2 h-5 w-5" />
+                          Manage
+                        </Button>
+                      </AdminDrawerModal>
                     )}
                   </div>
                 </Alert>

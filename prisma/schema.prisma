@@ -17,6 +17,10 @@ model Profile {
   userName       String
   email          String
   name           String
+  admin          Boolean @default(false)
+  role           String
+  CommuneMember  Boolean @default(false)
+  verified       Boolean @default(false)
   about          String  @db.LongText
   image          String
   coverImage     String
@@ -64,38 +68,43 @@ model Profile {
 }
 
 model Project {
-  id          String  @id @default(uuid())
-  title       String  @db.MediumText
-  description String  @db.LongText
-  banner      String
-  githubLink  String
-  demoLink    String
-  price       Int     @default(0)
-  techStack   String  @db.MediumText
-  react       Boolean @default(false)
-  nextjs      Boolean @default(false)
-  mongodb     Boolean @default(false)
-  express     Boolean @default(false)
-  nodejs      Boolean @default(false)
-  firebase    Boolean @default(false)
-  mysql       Boolean @default(false)
-  postgresql  Boolean @default(false)
-  graphql     Boolean @default(false)
-  html        Boolean @default(false)
-  css         Boolean @default(false)
-  javascript  Boolean @default(false)
-  typescript  Boolean @default(false)
-  shadcn      Boolean @default(false)
-  free        Boolean @default(false)
-  profileId   String
+  id                 String  @id @default(uuid())
+  title              String  @db.MediumText
+  description        String  @db.LongText
+  banner             String
+  githubLink         String
+  demoLink           String
+  price              Int     @default(0)
+  projectType        String  @db.MediumText
+  techStack          String  @db.MediumText
+  react              Boolean @default(false)
+  nextjs             Boolean @default(false)
+  mongodb            Boolean @default(false)
+  express            Boolean @default(false)
+  nodejs             Boolean @default(false)
+  firebase           Boolean @default(false)
+  mysql              Boolean @default(false)
+  postgresql         Boolean @default(false)
+  graphql            Boolean @default(false)
+  html               Boolean @default(false)
+  css                Boolean @default(false)
+  javascript         Boolean @default(false)
+  typescript         Boolean @default(false)
+  shadcn             Boolean @default(false)
+  free               Boolean @default(false)
+  profileId          String
+  authorName         String
+  authorProfileImage String
+  projectCount       Int     @default(0)
 
   likeCount Int @default(0)
   viewCount Int @default(0)
 
   Purchase Purchase[]
-  Profile  Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  Profile  Profile    @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
   @@index([profileId])
+  @@fulltext([title, description, techStack])
 }
 
 model Purchase {

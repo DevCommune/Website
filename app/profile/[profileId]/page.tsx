@@ -13,7 +13,6 @@ interface ProfilePageProps {
 }
 
 const page = async ({ params }: ProfilePageProps) => {
-  // console.log("Profile", params.profileId);
 
   const profile = await getProfileById(params.profileId);
 

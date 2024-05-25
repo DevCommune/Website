@@ -223,22 +223,16 @@ const ProfileDetailsClient = ({
             </Tbaspace>
           </TabsContent>
           <TabsContent value="location">
-            <Tbaspace>
-              location details
-              {/* TODO: MAP all the location details of profile  */}
-            </Tbaspace>
+            <Tbaspace>location details</Tbaspace>
           </TabsContent>
           <TabsContent value="skills">
-            <Tbaspace>
-              skills details
-              {/* TDODO */}
-            </Tbaspace>
+            <Tbaspace>skills details</Tbaspace>
           </TabsContent>
           <TabsContent value="contact">
-            <Tbaspace>ciontact details {/* TDODO */}</Tbaspace>
+            <Tbaspace>ciontact details</Tbaspace>
           </TabsContent>
           <TabsContent value="experience">
-            <Tbaspace>Experience details {/* TDODO */}</Tbaspace>
+            <Tbaspace>Experience details</Tbaspace>
           </TabsContent>
         </Tabs>
       </div>
@@ -251,13 +245,7 @@ const ProfileDetailsClient = ({
               </h1>
               <div className="grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-3 gap-6">
                 {profile.projects.map((project) => {
-                  return (
-                    <ProjectCard
-                      profile={profile}
-                      project={project}
-                      key={project.id}
-                    />
-                  );
+                  return <ProjectCard profile={profile} project={project} key={project.id} />;
                 })}
               </div>
             </>

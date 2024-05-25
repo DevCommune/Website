@@ -25,6 +25,7 @@ export default function PageWrapper({
   const pathname = usePathname();
 
   const isNotCommunitypage = pathname.includes("/community");
+  const isProjectsPage = pathname.includes("/projects");
 
   useEffect(() => {
     (async () => {
@@ -41,13 +42,13 @@ export default function PageWrapper({
       <NavBar />
       <div className="hidden" ref={stickyElement}></div>
       <main className="flex max-w-screen-2xl min-w-screen flex-col  dark:bg-black bg-white justify-between dark:bg-dot-white/[0.2] bg-dot-black/[0.2]">
-        <AnimatePresence mode="wait">{isLoading && <Loader />}</AnimatePresence>
+        {/* <AnimatePresence mode="wait">{isLoading && <Loader />}</AnimatePresence> */}
         {children}
       </main>
       <Footer />
       {/* {!isNotCommunitypage && <Spotlight />} */}
-      {!isNotCommunitypage && <Cursor stickyElement={stickyElement} />}
-      {!isNotCommunitypage && <StarsCanvas />}
+      {/* {!isNotCommunitypage && <Cursor stickyElement={stickyElement} />} */}
+      {!isNotCommunitypage && !isProjectsPage && <StarsCanvas />}
       <CrispChat />
     </>
   );

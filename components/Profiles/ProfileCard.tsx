@@ -26,6 +26,7 @@ import {
   FaLinkedin,
   FaNodeJs,
   FaPython,
+  FaShieldAlt,
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { HiMiniGlobeAlt } from "react-icons/hi2";
@@ -36,11 +37,12 @@ import {
   MdOutlineAppShortcut,
 } from "react-icons/md";
 import { TbBrandCpp } from "react-icons/tb";
-import { RiNextjsFill } from "react-icons/ri";
+import { RiNextjsFill, RiVerifiedBadgeFill } from "react-icons/ri";
 import { IoLogoJavascript, IoLogoWhatsapp, IoSettings } from "react-icons/io5";
 import { CgWebsite } from "react-icons/cg";
 import { GiFrozenBlock } from "react-icons/gi";
 import { Button } from "../ui/button";
+import ToolTipItem from "../layout/Tool-tip-item";
 const ProfileCard = ({ profile }: { profile: ProfileWithProjects }) => {
   const pathname = usePathname();
   const router = useRouter();
@@ -62,25 +64,38 @@ const ProfileCard = ({ profile }: { profile: ProfileWithProjects }) => {
     >
       <Card>
         <CardHeader>
-          <div className="flex items-center gap-2">
-            <Avatar className="w-12 h-12 p-1 bg-gray-500/30">
-              <AvatarImage
-                className="cursor-pointer"
-                src={profile.image}
-                alt={profile.name}
-              />
-              <AvatarFallback>
-                <Skeleton className="w-8 h-8 rounded-full bg-slate-200/50" />
-              </AvatarFallback>
-            </Avatar>
-            <div>
-              <CardTitle className="text-md font-semibold">
-                {profile.name}
-              </CardTitle>
-              <p className="text-sm text-muted-foreground">
-                @ {profile.userName}
-              </p>
+          <div className="flex items-center gap-2 w-full justify-between">
+            <div className="flex gap-1 items-center">
+              <Avatar className="w-12 h-12 p-1 bg-gray-500/30">
+                <AvatarImage
+                  className="cursor-pointer"
+                  src={profile.image}
+                  alt={profile.name}
+                />
+                <AvatarFallback>
+                  <Skeleton className="w-8 h-8 rounded-full bg-slate-200/50" />
+                </AvatarFallback>
+              </Avatar>
+              <div>
+                <CardTitle className="text-md font-semibold">
+                  {profile.name}
+                </CardTitle>
+                <p className="text-sm text-muted-foreground">
+                  @ {profile.userName}
+                </p>
+              </div>
             </div>
+            {profile.verified && (
+              <div className="flex items-center gap-2">
+                <ToolTipItem text="Developer">
+                  <FaShieldAlt size={23} className="text-[#f97316]" />
+                </ToolTipItem>
+                {/* TODO: Fixed that based on role */}
+                <ToolTipItem text="verified member">
+                  <RiVerifiedBadgeFill size={27} className="text-blue-700" />
+                </ToolTipItem>
+              </div>
+            )}
           </div>
         </CardHeader>
         <CardContent className="-mt-4">
@@ -152,8 +167,6 @@ const ProfileCard = ({ profile }: { profile: ProfileWithProjects }) => {
                   />
                 </span>
               )}
-
-                 {/* TDODO: Add all tech name with icon if need  */}
             </div>
           </div>
           <div className="pt-1 flex items-center gap-2 mb-1.5">
@@ -208,8 +221,6 @@ const ProfileCard = ({ profile }: { profile: ProfileWithProjects }) => {
                   />
                 </span>
               )}
-
-                 {/* TDODO: Add all tech name with icon  */}
             </div>
           </div>
           <div className="pt-2 flex w-full justify-between items-center">
@@ -267,15 +278,13 @@ const ProfileCard = ({ profile }: { profile: ProfileWithProjects }) => {
           <div className="pt-3 flex items-center gap-2 pb-2">
             {profile.whatsapp && (
               <a
-                href={profile.whatsapp}
+                href={`https://wa.me/+91${profile.whatsapp}`}
                 target="_blank"
                 className="w-8 h-8 rounded-full bg-slate-100/10 flex items-center justify-center"
               >
                 <IoLogoWhatsapp size={20} className="text-emerald-500" />
               </a>
             )}
-
-            {/* redirect to whatsapp : add proper link for that  */}
             <a
               href={`/profile-details/${profile.id}`}
               className="text-md underline flex items-center"

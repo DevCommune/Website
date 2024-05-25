@@ -12,7 +12,7 @@ interface ProfileDetailsProps {
 const ProfileDetails = async ({ params }: ProfileDetailsProps) => {
   const profile = await getProfileById(params.profileId);
 
-  if (!profile) return <div>OOp!. Hotel with the given Id not fund</div>;
+  if (!profile) return <div>OOp!. Profile with the given Id not fund</div>;
   return (
     <>
       <NavBar />

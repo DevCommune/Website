@@ -3,7 +3,7 @@ import { addNewProjectsSchema } from "@/schemas/addNewProjectsSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Profile, Project } from "@prisma/client";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { set, z } from "zod";
 import {
   Form,
   FormControl,
@@ -21,6 +21,15 @@ import {
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { UploadButton } from "@/hooks/uploadthing";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 import {
   BetweenHorizonalStart,
   Loader2,
@@ -32,7 +41,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "sonner";
-import { ScrollArea } from "../ui/scroll-area";
+import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 
 interface AddProjectFormProps {
   profile?: Profile & {
@@ -50,6 +59,7 @@ const AddProjectForm = ({
   const [image, setImage] = useState<string | undefined>(project?.banner);
   const [imageIsDeleting, setImageIsDeleting] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [projectType, setProjectType] = useState("");
 
   const router = useRouter();
 
@@ -140,7 +150,14 @@ const AddProjectForm = ({
       if (!profile) return null;
 
       axios
-        .post("/api/project", { ...values, profileId: profile.id })
+        .post("/api/project", {
+          ...values,
+          profileId: profile.id,
+          authorName: profile.name,
+          authorProfileImage: profile.image,
+          projectType: projectType,
+          projectCount: profile.projects.length + 1,
+        })
         .then((res) => {
           toast("Project created successfully 🎉");
           router.refresh();
@@ -263,95 +280,154 @@ const AddProjectForm = ({
               /> */}
               </div>
               <div className="flex-1 flex flex-col gap-5">
-                <FormLabel className="text-lg">Tech Stack </FormLabel>
-                <div className="-mt-2">
-                  <FormLabel className="text-lg">For Frontend</FormLabel>
-                  <FormDescription>tech used for Database</FormDescription>
-                  <div className="grid grid-cols-2 gap-3 mt-2">
-                    <CustomFormFieldCheckBoxProject
-                      control={form.control}
-                      name="react"
-                      label="React"
-                    />
-                    <CustomFormFieldCheckBoxProject
-                      control={form.control}
-                      name="nextjs"
-                      label="Next Js"
-                    />
-                    <CustomFormFieldCheckBoxProject
-                      control={form.control}
-                      name="html"
-                      label="HTML"
-                    />
-                    <CustomFormFieldCheckBoxProject
-                      control={form.control}
-                      name="css"
-                      label="CSS"
-                    />
-                    <CustomFormFieldCheckBoxProject
-                      control={form.control}
-                      name="javascript"
-                      label="Java Script"
-                    />
-                    <CustomFormFieldCheckBoxProject
-                      control={form.control}
-                      name="shadcn"
-                      label="Shadcn UI"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <FormLabel className="text-lg">For Database</FormLabel>
-                  <FormDescription>tech used for Database</FormDescription>
-                  <div className="grid grid-cols-2 gap-3 mt-2">
-                    <CustomFormFieldCheckBoxProject
-                      control={form.control}
-                      name="mongodb"
-                      label="Mongo DB"
-                    />
-                    <CustomFormFieldCheckBoxProject
-                      control={form.control}
-                      name="postgresql"
-                      label="Postgre SQL"
-                    />
-                    <CustomFormFieldCheckBoxProject
-                      control={form.control}
-                      name="mysql"
-                      label="My SQL"
-                    />
-                    <CustomFormFieldCheckBoxProject
-                      control={form.control}
-                      name="firebase"
-                      label="Firebase"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <FormLabel className="text-lg">For Backend</FormLabel>
-                  <FormDescription>tech used for dev backend</FormDescription>
-                  <div className="grid grid-cols-2 gap-3 mt-2">
-                    <CustomFormFieldCheckBoxProject
-                      control={form.control}
-                      name="express"
-                      label="Express Js"
-                    />
-                    <CustomFormFieldCheckBoxProject
-                      control={form.control}
-                      name="nodejs"
-                      label="Node Js"
-                    />
-                    <CustomFormFieldCheckBoxProject
-                      control={form.control}
-                      name="graphql"
-                      label="Graphql"
-                    />
-                    <CustomFormFieldCheckBoxProject
-                      control={form.control}
-                      name="typescript"
-                      label="Typescript"
-                    />
-                  </div>
-                </div>
+                <FormLabel className="text-lg">
+                  Select Your Project Type
+                </FormLabel>
+                <Tabs
+                  defaultValue="website"
+                  className="w-[280px] md:w-[300px] lg:w-full -mt-3"
+                >
+                  <TabsList className="mb-2 w-full ">
+                    <ScrollArea className="w-full whitespace-nowrap rounded-md">
+                      <TabsTrigger
+                        value="website"
+                        onClick={() => {
+                          setProjectType("website");
+                        }}
+                      >
+                        Website
+                      </TabsTrigger>
+                      <TabsTrigger
+                        value="app"
+                        onClick={() => {
+                          setProjectType("app");
+                        }}
+                      >
+                        App
+                      </TabsTrigger>
+                      <TabsTrigger
+                        value="hardware"
+                        onClick={() => {
+                          setProjectType("hardware");
+                        }}
+                      >
+                        Hardware Project
+                      </TabsTrigger>
+                      <TabsTrigger
+                        onClick={() => {
+                          setProjectType("software");
+                        }}
+                        value="software"
+                      >
+                        Software Project
+                      </TabsTrigger>
+
+                      <ScrollBar orientation="horizontal" />
+                    </ScrollArea>
+                  </TabsList>
+
+                  <TabsContent value="website" className="flex flex-col gap-3">
+                    <div className="-mt-2">
+                      <FormLabel className="text-lg">For Frontend</FormLabel>
+                      <FormDescription>tech used for Database</FormDescription>
+                      <div className="grid grid-cols-2 gap-3 mt-2">
+                        <CustomFormFieldCheckBoxProject
+                          control={form.control}
+                          name="react"
+                          label="React"
+                        />
+                        <CustomFormFieldCheckBoxProject
+                          control={form.control}
+                          name="nextjs"
+                          label="Next Js"
+                        />
+                        <CustomFormFieldCheckBoxProject
+                          control={form.control}
+                          name="html"
+                          label="HTML"
+                        />
+                        <CustomFormFieldCheckBoxProject
+                          control={form.control}
+                          name="css"
+                          label="CSS"
+                        />
+                        <CustomFormFieldCheckBoxProject
+                          control={form.control}
+                          name="javascript"
+                          label="Java Script"
+                        />
+                        <CustomFormFieldCheckBoxProject
+                          control={form.control}
+                          name="shadcn"
+                          label="Shadcn UI"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <FormLabel className="text-lg">For Database</FormLabel>
+                      <FormDescription>tech used for Database</FormDescription>
+                      <div className="grid grid-cols-2 gap-3 mt-2">
+                        <CustomFormFieldCheckBoxProject
+                          control={form.control}
+                          name="mongodb"
+                          label="Mongo DB"
+                        />
+                        <CustomFormFieldCheckBoxProject
+                          control={form.control}
+                          name="postgresql"
+                          label="Postgre SQL"
+                        />
+                        <CustomFormFieldCheckBoxProject
+                          control={form.control}
+                          name="mysql"
+                          label="My SQL"
+                        />
+                        <CustomFormFieldCheckBoxProject
+                          control={form.control}
+                          name="firebase"
+                          label="Firebase"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <FormLabel className="text-lg">For Backend</FormLabel>
+                      <FormDescription>
+                        tech used for dev backend
+                      </FormDescription>
+                      <div className="grid grid-cols-2 gap-3 mt-2">
+                        <CustomFormFieldCheckBoxProject
+                          control={form.control}
+                          name="express"
+                          label="Express Js"
+                        />
+                        <CustomFormFieldCheckBoxProject
+                          control={form.control}
+                          name="nodejs"
+                          label="Node Js"
+                        />
+                        <CustomFormFieldCheckBoxProject
+                          control={form.control}
+                          name="graphql"
+                          label="Graphql"
+                        />
+                        <CustomFormFieldCheckBoxProject
+                          control={form.control}
+                          name="typescript"
+                          label="Typescript"
+                        />
+                      </div>
+                    </div>
+                  </TabsContent>
+                  <TabsContent value="app">
+                    Technology selection field for apps
+                  </TabsContent>
+                  <TabsContent value="hardware">
+                    Technology selection field for hardware
+                  </TabsContent>
+                  <TabsContent value="software">
+                    Technology selection field for software
+                  </TabsContent>
+                </Tabs>
                 <CustomFormFieldTextareaProject
                   control={form.control}
                   name="techStack"

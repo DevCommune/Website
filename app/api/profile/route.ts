@@ -20,6 +20,7 @@ export async function POST(req: Request) {
         userId,
         id: response?.username,
         userName: response?.username,
+        
       },
     });
 

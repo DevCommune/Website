@@ -102,7 +102,10 @@ const ProjectCard = ({
       <ConfirmDialogue />
       <Card className="shadow-md z-10">
         <CardHeader>
-          <CardTitle className="underline text-md md:text-lg"> {project.title}</CardTitle>
+          <CardTitle className="underline text-md md:text-lg">
+            {" "}
+            {project.title}
+          </CardTitle>
           <CardDescription>{project.description}</CardDescription>
         </CardHeader>
         <CardContent>
@@ -139,7 +142,9 @@ const ProjectCard = ({
         </div> */}
           <Separator />
           <div className="my-2">
-            <CardTitle className="underline  text-md md:text-lg">TechStack Used</CardTitle>
+            <CardTitle className="underline  text-md md:text-lg">
+              TechStack Used
+            </CardTitle>
             <div className="flex flex-wrap items-center  w-full gap-6 my-3">
               {!!project.react && (
                 <GrReactjs
@@ -165,7 +170,6 @@ const ProjectCard = ({
                   className="text-gray-800 dark:text-slate-200 "
                 />
               )}
-              {/* TDODO: Add all tech name with icon  */}
             </div>
           </div>
           <Separator />

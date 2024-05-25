@@ -7,13 +7,28 @@ import { Separator } from "../ui/separator";
 const ProfileList = ({ profiles }: { profiles: ProfileWithProjects[] }) => {
   return (
     <div className="">
-      <h3 className="text-2xl underline mb-2 ">Our Community</h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-3 ">
-        {profiles.map((profile) => (
-          <div key={profile.id}>
-            <ProfileCard profile={profile} />
-          </div>
-        ))}
+      <h3 className="text-2xl underline mb-2 ">Verified Members</h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-3 mb-6">
+        {profiles.map((profile) => {
+          return (
+            <div key={profile.id}>
+              {profile.verified && <ProfileCard profile={profile} />}
+            </div>
+          );
+        })}
+      </div>
+
+      <h3 className="text-2xl underline my-4 ">All Our Members</h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-3 mb-10">
+        {
+          !profiles.map((profile) => {
+            return (
+              <div key={profile.id}>
+                <ProfileCard profile={profile} />
+              </div>
+            );
+          })
+        }
       </div>
     </div>
   );
@@ -21,4 +36,6 @@ const ProfileList = ({ profiles }: { profiles: ProfileWithProjects[] }) => {
 
 export default ProfileList;
 
-{/* <div class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]"></div> */}
+{
+  /* <div class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]"></div> */
+}

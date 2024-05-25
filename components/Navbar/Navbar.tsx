@@ -167,13 +167,21 @@ const NavBar = () => {
             />
           </Link>
         </div>
-        <div className="pl-5">
+        <div className="pl-5 flex flex-row gap-4 items-center">
           <Link
             href="/community"
             target="blank"
             className="max-[825px]:hidden flex items-center gap-1"
           >
             <p className="pl-1">Community</p>
+            <SquareArrowOutUpRight size={16} className="text-gray-500 mt-1" />
+          </Link>
+          <Link
+            href="/projects"
+            target="blank"
+            className="max-[825px]:hidden flex items-center gap-1"
+          >
+            <p className="pl-1">Projects</p>
             <SquareArrowOutUpRight size={16} className="text-gray-500 mt-1" />
           </Link>
         </div>
