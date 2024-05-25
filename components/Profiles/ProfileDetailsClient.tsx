@@ -87,17 +87,7 @@ const ProfileDetailsClient = ({
             />
           </div>
         ) : (
-          // ) : (
-          //   <Skeleton className="aspect-square bg-gray-500/40 overflow-hidden relative w-full h-[200px] md:h-[300px] rounded-lg" />
-          // )
-          <div className="aspect-square overflow-hidden relative w-full h-[170px] md:h-[300px] rounded-lg">
-            {/* <Image
-            src={}
-            alt={profile.name + "cover image"}
-            fill
-            className="object-cover"
-          /> */}
-          </div>
+          <Skeleton className="aspect-square bg-gray-500/40 overflow-hidden relative w-full h-[200px] md:h-[300px] rounded-lg" />
         )}
 
         {profile.image ? (
