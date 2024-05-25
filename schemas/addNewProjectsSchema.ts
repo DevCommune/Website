@@ -22,6 +22,8 @@ export const addNewProjectsSchema = z.object({
     message: "Describe Project Tech Stack",
   }),
   react: z.boolean().optional(),
+  reactnative: z.boolean().optional(),
+  flutter: z.boolean().optional(),
   nextjs: z.boolean().optional(),
   mongodb: z.boolean().optional(),
   express: z.boolean().optional(),
