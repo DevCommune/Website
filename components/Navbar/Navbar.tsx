@@ -70,7 +70,7 @@ const NavBar = () => {
   const isCommunityPage = pathname.includes("/community");
 
   return (
-    <div className="flex fixed top-0 left-0 min-w-full justify-between px-5 py-3 border-b z-40 dark:bg-black/50 backdrop-blur-lg bg-white ">
+    <div className="flex max-w-2xl fixed top-0 left-0 min-w-full justify-between px-5 py-3 border-b z-40 dark:bg-black/50 backdrop-blur-lg bg-white ">
       <div className="flex justify-between w-full min-[825px]:hidden">
         <Link href="/" className="pl-2 flex items-center justify-center">
           <Image

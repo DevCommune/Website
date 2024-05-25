@@ -7,13 +7,16 @@ import Image from "next/image";
 import { Skeleton } from "../ui/skeleton";
 import Link from "next/link";
 import { RiContactsBook2Fill } from "react-icons/ri";
+import { BsGlobeCentralSouthAsia } from "react-icons/bs";
+import { CiMapPin } from "react-icons/ci";
 import {
   FaGithub,
   FaInstagram,
+  FaLaptopCode,
   FaLinkedin,
   FaSwatchbook,
 } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaLocationCrosshairs, FaXTwitter } from "react-icons/fa6";
 import {
   Album,
   CalendarCheck,
@@ -40,6 +43,8 @@ import {
 import { TbBrandCpp } from "react-icons/tb";
 import { RiNextjsFill, RiVerifiedBadgeFill } from "react-icons/ri";
 import { IoLogoJavascript, IoSettings } from "react-icons/io5";
+import { GoDotFill } from "react-icons/go";
+
 import { CgWebsite } from "react-icons/cg";
 import { GiFrozenBlock } from "react-icons/gi";
 import { MdLocationPin } from "react-icons/md";
@@ -51,10 +56,11 @@ import IconItem from "../layout/Icon-text-flex";
 import { cn } from "@/lib/utils";
 import { BiSolidSchool } from "react-icons/bi";
 import ProjectCard from "../Projects/ProjectCard";
+import { GrTechnology } from "react-icons/gr";
 
 export const Tbaspace = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className={cn("w-full h-[160px] lg:h-[200px]")}>
+    <div className={cn("w-full h-[180px] lg:h-[230px]")}>
       <ScrollArea className={cn("w-full h-[170px]")}>{children}</ScrollArea>
     </div>
   );
@@ -69,7 +75,7 @@ const ProfileDetailsClient = ({
   const country = getCountryByCode(profile.country);
   const state = getStateByCode(profile.country, profile.state);
   return (
-    <div className="flex flex-col gap-2 md:gap-3 lg:gap-4 pb-2">
+    <div className="flex flex-col gap-2 md:gap-3 lg:gap-4 pb-2 mt-4">
       <div className="relative">
         {profile.coverImage ? (
           <div className="aspect-square overflow-hidden relative w-full h-[170px] md:h-[300px] rounded-lg">
@@ -193,7 +199,9 @@ const ProfileDetailsClient = ({
               <TabsTrigger value="education">Education</TabsTrigger>
               <TabsTrigger value="location">Location</TabsTrigger>
               <TabsTrigger value="skills">Skills</TabsTrigger>
-              <TabsTrigger value="experience">Experience</TabsTrigger>
+              {profile.experience && (
+                <TabsTrigger value="experience">Experience</TabsTrigger>
+              )}
               <TabsTrigger value="contact">Contact</TabsTrigger>
               <ScrollBar orientation="horizontal" />
             </ScrollArea>
@@ -249,190 +257,246 @@ const ProfileDetailsClient = ({
             <Tbaspace>
               <div className="flex flex-col gap-3">
                 <IconItem>
-                  <MdLocationPin size={18} className="hidden lg:block " />
+                  <BsGlobeCentralSouthAsia
+                    size={18}
+                    className="hidden lg:block "
+                  />
                   <div className="flex flex-col lg:flex-row">
-                    <p className="text-sm md:text-md font-semibold">
+                    <p className="text-sm md:text-md font-semibold pl-[2px]">
                       Country :
                     </p>
                     <p className="text-sm md:text-md pl-0 lg:pl-1">
-                      {profile.country}
+                      {country?.name}
                     </p>
                   </div>
                 </IconItem>
                 <IconItem>
                   <MdLocationPin size={18} className="hidden lg:block " />
                   <p className="text-sm md:text-md font-semibold">State :</p>
-                  <p className="text-sm md:text-md pl-1">{profile.state}</p>
+                  <p className="text-sm md:text-md pl-1">{state?.name}</p>
                 </IconItem>
-                <IconItem>
-                  <MdLocationPin size={16} className="hidden lg:block " />
-                  <p className="text-sm md:text-md font-semibold">City :</p>
-                  <p className="text-sm md:text-md pl-1">{profile.city}</p>
-                </IconItem>
+                {profile.city && (
+                  <IconItem>
+                    <CiMapPin size={16} className="hidden lg:block " />
+                    <p className="text-sm md:text-md font-semibold">City :</p>
+                    <p className="text-sm md:text-md pl-1">{profile.city}</p>
+                  </IconItem>
+                )}
+                {profile.address && (
+                  <IconItem>
+                    <FaLocationCrosshairs
+                      size={16}
+                      className="hidden lg:block "
+                    />
+                    <p className="text-sm md:text-md font-semibold">
+                      Address :
+                    </p>
+                    <p className="text-sm md:text-md pl-1">{profile.address}</p>
+                  </IconItem>
+                )}
               </div>
             </Tbaspace>
           </TabsContent>
           <TabsContent value="skills">
             <Tbaspace>
-              <div className="flex flex-col gap-3">
-                <IconItem>
-                  <BiSolidSchool size={18} className="hidden lg:block " />
-                  <div className="flex flex-col lg:flex-row">
-                    <p className="text-sm md:text-md font-semibold">
-                      Technologies Acquired :
+              <div className="flex flex-col items-start lg:flex-row gap-5 lg:gap-10 px-5">
+                <div className="flex flex-col gap-2 mt-2">
+                  <IconItem>
+                    <GrTechnology size={18} className="hidden lg:block " />
+                    <p className="text-md md:text-lg underline font-semibold pr-2">
+                      Technologies Acquired
                     </p>
-                    <div className="flex items-center gap-1.5">
-                      {profile.webdev && (
-                        <span className="text-sm">
-                          <FaCode
-                            size={18}
-                            className="text-gray-600 dark:text-slate-200"
-                          />
-                        </span>
-                      )}
-                      {profile.appdev && (
-                        <span className="text-sm">
-                          <MdOutlineAppShortcut
-                            size={18}
-                            className="text-gray-600 dark:text-slate-200"
-                          />
-                        </span>
-                      )}
-                      {profile.uiux && (
-                        <span className="text-sm">
-                          <CgWebsite
-                            size={18}
-                            className="text-gray-600 dark:text-slate-200"
-                          />
-                        </span>
-                      )}
-                      {profile.ai && (
-                        <span className="text-sm">
-                          <Bot
-                            size={18}
-                            className="text-gray-600 dark:text-slate-200"
-                          />
-                        </span>
-                      )}
-                      {profile.ml && (
-                        <span className="text-sm">
-                          <IoSettings
-                            size={18}
-                            className="text-gray-600 dark:text-slate-200"
-                          />
-                        </span>
-                      )}
-                      {profile.blockchain && (
-                        <span className="text-sm">
-                          <GiFrozenBlock
-                            size={18}
-                            className="text-gray-600 dark:text-slate-200"
-                          />
-                        </span>
-                      )}
-                      {profile.cloud && (
-                        <span className="text-sm">
-                          <MdCloudUpload
-                            size={18}
-                            className="text-gray-600 dark:text-slate-200"
-                          />
-                        </span>
-                      )}
-                      {profile.coding && (
-                        <span className="text-sm">
-                          <Terminal
-                            size={18}
-                            className="text-gray-600 dark:text-slate-200"
-                          />
-                        </span>
-                      )}
-                    </div>
+                  </IconItem>
+                  <div className="flex flex-col items-start gap-1">
+                    {profile.webdev && (
+                      <IconItem>
+                        <GoDotFill
+                          size={13}
+                          className="text-gray-600 dark:text-slate-200"
+                        />
+                        Web development
+                        <FaCode
+                          size={18}
+                          className="text-gray-600 dark:text-slate-200"
+                        />
+                      </IconItem>
+                    )}
+                    {profile.appdev && (
+                      <IconItem>
+                        <GoDotFill
+                          size={13}
+                          className="text-gray-600 dark:text-slate-200"
+                        />
+                        App development
+                        <MdOutlineAppShortcut
+                          size={18}
+                          className="text-gray-600 dark:text-slate-200"
+                        />
+                      </IconItem>
+                    )}
+                    {profile.uiux && (
+                      <IconItem>
+                        <GoDotFill
+                          size={13}
+                          className="text-gray-600 dark:text-slate-200"
+                        />
+                        UI/UX Designing
+                        <CgWebsite
+                          size={18}
+                          className="text-gray-600 dark:text-slate-200"
+                        />
+                      </IconItem>
+                    )}
+                    {profile.ai && (
+                      <IconItem>
+                        <GoDotFill
+                          size={13}
+                          className="text-gray-600 dark:text-slate-200"
+                        />
+                        Artificial Intelligence
+                        <Bot
+                          size={18}
+                          className="text-gray-600 dark:text-slate-200"
+                        />
+                      </IconItem>
+                    )}
+                    {profile.ml && (
+                      <IconItem>
+                        <GoDotFill
+                          size={13}
+                          className="text-gray-600 dark:text-slate-200"
+                        />
+                        Mechince Learning
+                        <IoSettings
+                          size={18}
+                          className="text-gray-600 dark:text-slate-200"
+                        />
+                      </IconItem>
+                    )}
+                    {profile.blockchain && (
+                      <IconItem>
+                        <GoDotFill
+                          size={13}
+                          className="text-gray-600 dark:text-slate-200"
+                        />
+                        Blockchain Technology
+                        <GiFrozenBlock
+                          size={18}
+                          className="text-gray-600 dark:text-slate-200"
+                        />
+                      </IconItem>
+                    )}
+                    {profile.cloud && (
+                      <IconItem>
+                        <GoDotFill
+                          size={13}
+                          className="text-gray-600 dark:text-slate-200"
+                        />
+                        Cloud Computing
+                        <MdCloudUpload
+                          size={18}
+                          className="text-gray-600 dark:text-slate-200"
+                        />
+                      </IconItem>
+                    )}
+                    {profile.coding && (
+                      <IconItem>
+                        <GoDotFill
+                          size={13}
+                          className="text-gray-600 dark:text-slate-200"
+                        />
+                        Competitive Programming
+                        <Terminal
+                          size={18}
+                          className="text-gray-600 dark:text-slate-200"
+                        />
+                      </IconItem>
+                    )}
                   </div>
-                </IconItem>
-                <IconItem>
-                  <IoSchoolSharp size={18} className="hidden lg:block " />
-                  <p className="text-sm md:text-md font-semibold">
-                    Coding Languages :
-                  </p>
-                  <div className="flex items-center gap-1.5">
-                    {profile.c && <span className="text-sm">C</span>}
+                </div>
+                <div className="mt-0 lg:mt-2">
+                  <IconItem>
+                    <FaLaptopCode size={18} className="hidden lg:block " />
+                    <p className="text-md md:text-lg underline font-semibold pr-2">
+                      Coding Languages
+                    </p>
+                  </IconItem>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-3 mt-2">
+                    {profile.c && <IconItem>C</IconItem>}
                     {profile.cpp && (
-                      <span className="text-sm">
+                      <IconItem>
                         <TbBrandCpp
                           size={18}
                           className="text-gray-600 dark:text-slate-200"
                         />
-                      </span>
+                      </IconItem>
                     )}
                     {profile.java && (
-                      <span className="text-sm">
+                      <IconItem>
+                        JAVA
                         <FaJava
                           size={18}
                           className="text-gray-600 dark:text-slate-200"
                         />
-                      </span>
+                      </IconItem>
                     )}
                     {profile.javascript && (
-                      <span className="text-sm">
+                      <IconItem>
+                        JavaScript
                         <IoLogoJavascript
                           size={18}
                           className="text-gray-600 dark:text-slate-200"
                         />
-                      </span>
+                      </IconItem>
                     )}
                     {profile.nextjs && (
-                      <span className="text-sm">
+                      <IconItem>
+                        Next Js
                         <RiNextjsFill
                           size={18}
                           className="text-gray-600 dark:text-slate-200"
                         />
-                      </span>
+                      </IconItem>
                     )}
                     {profile.python && (
-                      <span className="text-sm">
+                      <IconItem>
+                        Python
                         <FaPython
                           size={18}
                           className="text-gray-600 dark:text-slate-200"
                         />
-                      </span>
+                      </IconItem>
                     )}
                     {profile.nodejs && (
-                      <span className="text-sm">
+                      <IconItem>
+                        Node Js
                         <FaNodeJs
                           size={17}
                           className="text-gray-600 dark:text-slate-200"
                         />
-                      </span>
+                      </IconItem>
                     )}
                   </div>
-                </IconItem>
+                </div>
               </div>
             </Tbaspace>
           </TabsContent>
           <TabsContent value="contact">
             <Tbaspace>
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-3 mt-2 lg:mt-3">
                 <IconItem>
                   <RiContactsBook2Fill size={18} className="hidden lg:block " />
-                  <div className="flex flex-col lg:flex-row">
-                    <p className="text-sm md:text-md font-semibold">
-                      Contact Number :
-                    </p>
-                    <p className="text-sm md:text-md pl-0 lg:pl-1">
-                      {profile.contact}
-                    </p>
+                  <div className="flex flex-col lg:flex-row text-lg">
+                    <p className="font-semibold">Contact Number :</p>
+                    <p className="pl-0 lg:pl-1">{profile.contact}</p>
                   </div>
                 </IconItem>
                 {profile.whatsapp && (
                   <IconItem>
                     <IoLogoWhatsapp size={18} className="hidden lg:block " />
                     <div className="flex flex-col lg:flex-row">
-                      <p className="text-sm md:text-md font-semibold">
-                        WhatsApp Number :
-                      </p>
-                      <p className="text-sm md:text-md pl-0 lg:pl-1">
-                        {profile.whatsapp}
-                      </p>
+                      <p className="font-semibold">WhatsApp Number :</p>
+                      <p className="pl-0 lg:pl-1">{profile.whatsapp}</p>
                     </div>
                   </IconItem>
                 )}
@@ -440,11 +504,9 @@ const ProfileDetailsClient = ({
                   <IconItem>
                     <MdEmail size={18} className="hidden lg:block " />
                     <div className="flex flex-col lg:flex-row">
-                      <p className="text-sm md:text-md font-semibold">
-                        Email :
-                      </p>
-                      <p className="text-sm md:text-md pl-0 lg:pl-1">
-                        <a href={"mailto:"+profile.email}>{profile.email}</a>
+                      <p className="font-semibold">Email :</p>
+                      <p className="pl-0 lg:pl-1">
+                        <a href={`mailto:${profile.email}`}>{profile.email}</a>
                       </p>
                     </div>
                   </IconItem>
