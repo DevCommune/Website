@@ -146,6 +146,26 @@ const AddProfileForm = ({ profile }: AddProfileFormProps) => {
     },
   });
 
+  const SendEmail = async () => {
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: form.getValues("email") }),
+      });
+      if (!response.ok) {
+        toast("Failed to send Email");
+      } else {
+        toast("Email sent successfully");
+      }
+    } catch (error) {
+      toast("Failed to send Email");
+      console.log(error);
+    }
+  };
+
   //manage the image state on load
   useEffect(() => {
     if (typeof image === "string" && image.length > 0) {
@@ -241,6 +261,7 @@ const AddProfileForm = ({ profile }: AddProfileFormProps) => {
         .patch(`/api/profile/${profile.id}`, values)
         .then((res) => {
           toast("Profile updated successfully");
+          SendEmail();
           router.push(`/profile/${profile.id}`);
           setIsLoading(false);
         })
@@ -254,7 +275,9 @@ const AddProfileForm = ({ profile }: AddProfileFormProps) => {
       axios
         .post("/api/profile", values)
         .then((res) => {
+          
           toast("Profile created successfully 🎉");
+          SendEmail();
           router.push(`/profile/${res.data.id}`);
           setIsLoading(false);
         })
