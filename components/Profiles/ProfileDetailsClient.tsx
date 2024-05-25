@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { ProfileWithProjects } from "../Forms/AddProfileForm";
 import useLocation from "@/hooks/useLocation";
 import Image from "next/image";
@@ -32,7 +32,6 @@ import {
   FaPython,
   FaShieldAlt,
 } from "react-icons/fa";
-import { HiMiniGlobeAlt } from "react-icons/hi2";
 import { MdEmail } from "react-icons/md";
 import { Bot, Terminal } from "lucide-react";
 import {
@@ -60,7 +59,7 @@ import { GrTechnology } from "react-icons/gr";
 
 export const Tbaspace = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className={cn("w-full h-[180px] lg:h-[230px]")}>
+    <div className={cn("w-full h-[180px] lg:h-auto")}>
       <ScrollArea className={cn("w-full h-[170px]")}>{children}</ScrollArea>
     </div>
   );
@@ -74,6 +73,7 @@ const ProfileDetailsClient = ({
   const { getCountryByCode, getStateByCode } = useLocation();
   const country = getCountryByCode(profile.country);
   const state = getStateByCode(profile.country, profile.state);
+
   return (
     <div className="flex flex-col gap-2 md:gap-3 lg:gap-4 pb-2 mt-4">
       <div className="relative">
@@ -87,7 +87,17 @@ const ProfileDetailsClient = ({
             />
           </div>
         ) : (
-          <Skeleton className="aspect-square bg-gray-500/40 overflow-hidden relative w-full h-[200px] md:h-[300px] rounded-lg" />
+          // ) : (
+          //   <Skeleton className="aspect-square bg-gray-500/40 overflow-hidden relative w-full h-[200px] md:h-[300px] rounded-lg" />
+          // )
+          <div className="aspect-square overflow-hidden relative w-full h-[170px] md:h-[300px] rounded-lg">
+            {/* <Image
+            src={}
+            alt={profile.name + "cover image"}
+            fill
+            className="object-cover"
+          /> */}
+          </div>
         )}
 
         {profile.image ? (
@@ -208,45 +218,45 @@ const ProfileDetailsClient = ({
           </TabsList>
           <TabsContent value="education" className="mt-3">
             <Tbaspace>
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-3 px-1">
                 <IconItem>
                   <BiSolidSchool size={18} className="hidden lg:block " />
                   <div className="flex flex-col lg:flex-row">
-                    <p className="text-sm md:text-md font-semibold">
+                    <p className="text-md md:text-lg font-semibold">
                       College name :
                     </p>
-                    <p className="text-sm md:text-md pl-0 lg:pl-1">
+                    <p className="text-sm md:text-lg pl-0 lg:pl-1">
                       {profile.collegeName}
                     </p>
                   </div>
                 </IconItem>
                 <IconItem>
                   <IoSchoolSharp size={18} className="hidden lg:block " />
-                  <p className="text-sm md:text-md font-semibold">
+                  <p className="text-md md:text-lg font-semibold">
                     Persuing degree :
                   </p>
-                  <p className="text-sm md:text-md pl-1">{profile.degree}</p>
+                  <p className="text-md md:text-lg  pl-1">{profile.degree}</p>
                 </IconItem>
                 <IconItem>
                   <FaSwatchbook size={16} className="hidden lg:block " />
-                  <p className="text-sm md:text-md font-semibold">Branch:</p>
+                  <p className="text-md md:text-lg font-semibold">Branch:</p>
                   <p className="text-sm md:text-md pl-1">{profile.branch}</p>
                 </IconItem>
                 <IconItem>
                   <CalendarCheck size={18} className="hidden lg:block " />
-                  <p className="text-sm md:text-md font-semibold">
+                  <p className="text-sm md:text-lg font-semibold">
                     Year of Study :
                   </p>
-                  <p className="text-sm md:text-md pl-1">
+                  <p className="text-sm md:text-lg pl-1">
                     {profile.presentYear}
                   </p>
                 </IconItem>
                 <IconItem>
                   <CalendarClock size={18} className="hidden lg:block " />
-                  <p className="text-sm md:text-md font-semibold">
+                  <p className="text-sm md:text-lg font-semibold">
                     Passing Out Year :
                   </p>
-                  <p className="text-sm md:text-md pl-1">
+                  <p className="text-sm md:text-ld pl-1">
                     {profile.graduationYear}
                   </p>
                 </IconItem>
@@ -486,7 +496,7 @@ const ProfileDetailsClient = ({
               <div className="flex flex-col gap-3 mt-2 lg:mt-3">
                 <IconItem>
                   <RiContactsBook2Fill size={18} className="hidden lg:block " />
-                  <div className="flex flex-col lg:flex-row text-lg">
+                  <div className="flex flex-row textmd lg:text-lg gap-1">
                     <p className="font-semibold">Contact Number :</p>
                     <p className="pl-0 lg:pl-1">{profile.contact}</p>
                   </div>
@@ -494,7 +504,7 @@ const ProfileDetailsClient = ({
                 {profile.whatsapp && (
                   <IconItem>
                     <IoLogoWhatsapp size={18} className="hidden lg:block " />
-                    <div className="flex flex-col lg:flex-row">
+                    <div className="flex flex-row textmd lg:text-lg gap-1">
                       <p className="font-semibold">WhatsApp Number :</p>
                       <p className="pl-0 lg:pl-1">{profile.whatsapp}</p>
                     </div>
@@ -503,7 +513,7 @@ const ProfileDetailsClient = ({
                 {profile.email && (
                   <IconItem>
                     <MdEmail size={18} className="hidden lg:block " />
-                    <div className="flex flex-col lg:flex-row">
+                    <div className="flex flex-row textmd lg:text-lg gap-1">
                       <p className="font-semibold">Email :</p>
                       <p className="pl-0 lg:pl-1">
                         <a href={`mailto:${profile.email}`}>{profile.email}</a>
@@ -532,7 +542,7 @@ const ProfileDetailsClient = ({
           </TabsContent>
         </Tabs>
       </div>
-      <div className="mt-2 mb-10">
+      <div className="mt-2 mb-5">
         <div>
           {!!profile.projects.length && (
             <>

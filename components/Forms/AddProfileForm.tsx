@@ -563,7 +563,7 @@ const AddProfileForm = ({ profile }: AddProfileFormProps) => {
                 name="coverImage"
                 render={({ field }) => (
                   <FormItem className="flex flex-col space-y-2 mt-4">
-                    <FormLabel>Upload a Cover Image </FormLabel>
+                    <FormLabel>Upload a Cover Image *</FormLabel>
                     <FormDescription>
                       Upload a image for your psofile banner
                     </FormDescription>

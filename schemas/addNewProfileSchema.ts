@@ -16,7 +16,9 @@ export const addNewProfileFormSchema = z.object({
   image: z.string().min(1, {
     message: "Image is required",
   }),
-  coverImage: z.string().optional(),
+  coverImage: z.string().min(1, {
+    message: "Image is required",
+  }),
   country: z.string().min(1, {
     message: "Country is required",
   }),
