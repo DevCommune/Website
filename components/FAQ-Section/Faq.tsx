@@ -51,13 +51,32 @@ export function FAQ() {
         </AccordionItem>
         <AccordionItem value="item-5">
           <AccordionTrigger>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque,
-            expedita.
+          How can I get involved in Dev Commune?
+
           </AccordionTrigger>
           <AccordionContent className="text-left">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam
-            cum delectus dolore dolorem atque tenetur quo temporibus soluta
-            facere quidem!
+          You can get involved by attending our workshops and meetups, participating in hackathons and collaborative projects, contributing resources or knowledge-sharing, and joining discussions on our platforms.
+
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-6">
+          <AccordionTrigger>
+          Does Dev Commune support open-source projects?
+
+          </AccordionTrigger>
+          <AccordionContent className="text-left">
+          Yes, Dev Commune supports and encourages contributions to open-source projects. We believe in the importance of open-source software and its role in fostering innovation and collaboration in the tech community.
+
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-7">
+          <AccordionTrigger>
+          How can I stay updated with Dev Commune's activities?
+
+          </AccordionTrigger>
+          <AccordionContent className="text-left">
+          You can stay updated by following us on our social media channels, subscribing to our newsletter, and regularly visiting our website where we post updates on upcoming events, workshops, and other activities.
+
           </AccordionContent>
         </AccordionItem>
       </Accordion>
