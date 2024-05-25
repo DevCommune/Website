@@ -13,13 +13,43 @@ export function FAQ() {
       </h1>
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="item-1">
-          <AccordionTrigger>Lorem ipsum dolor sit amet.</AccordionTrigger>
+          <AccordionTrigger>What activities does Dev Commune offer?</AccordionTrigger>
           <AccordionContent className="text-left">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo,
-            tempora?
+          Dev Commune offers a variety of activities including hands-on workshops, networking meetups, hackathons, and collaborative projects aimed at enhancing technical skills and fostering industry connections.
+
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-2">
+          <AccordionTrigger>
+          Who can join Dev Commune? Is it only for developers?
+
+          </AccordionTrigger>
+          <AccordionContent className="text-left">
+          Dev Commune welcomes anyone with an interest in technology, from beginners to seasoned professionals. Our community is open to developers, tech enthusiasts, students, and anyone looking to expand their knowledge and skills in tech.
+
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-3">
+          <AccordionTrigger>
+          How can I benefit from joining Dev Commune?
+
+          </AccordionTrigger>
+          <AccordionContent className="text-left">
+          By joining Dev Commune, you can benefit from networking opportunities, access to educational resources, mentorship, and participating in collaborative projects that can enhance your skills and career prospects in the tech industry.
+
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-4">
+          <AccordionTrigger>
+          Are there membership fees to join Dev Commune?
+
+          </AccordionTrigger>
+          <AccordionContent className="text-left">
+          No, Dev Commune is committed to being an inclusive community and does not charge any membership fees. Our resources and events are accessible to all who are interested in participating.
+
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-5">
           <AccordionTrigger>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque,
             expedita.

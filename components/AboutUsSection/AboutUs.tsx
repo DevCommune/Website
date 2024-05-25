@@ -4,19 +4,19 @@ import StarsCanvas from '../StarCanvas/StarCanvas'
 
 const features = [
   {
-    name: 'Build faster.',
+    name: 'About us.',
     description:
-      'Get up and running in no time with pre-configured settings and best practices. Say goodbye to setup and focus on what truly matters - building your application.',
+      'Dev Commune fosters a dynamic environment for tech enthusiasts to connect, learn, and innovate through workshops, meetups, and hackathons. We empower members to excel in their careers and stay ahead in the tech industry.',
     icon: CloudArrowUpIcon,
   },
   {
-    name: 'Focus on business logic.',
-    description: 'Concentrate on solving business problems instead of dealing with the repetitive setup.',
+    name: 'Resource Sharing.',
+    description: 'Creating a repository of valuable resources such as tutorials, articles, and tools that members can access to enhance their knowledge and skills.',
     icon: LockClosedIcon,
   },
   {
     name: 'Ready for scale.',
-    description: 'Prepare for growth from day one. With built-in optimizations and scalable architecture, your application will be ready to handle increased traffic and complexity.',
+    description: 'Dev Commune scales up through hands-on workshops, networking meetups, and hackathons, fostering collaborative learning and innovation among tech enthusiasts and professionals.',
     icon: ServerIcon,
   },
 ]
@@ -28,10 +28,10 @@ export default function AboutUs() {
         <div className="mx-auto grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
           <div className="lg:pr-8 lg:pt-4">
             <div className="lg:max-w-lg">
-              <h2 className="text-base font-semibold leading-7 text-indigo-600">Cook faster</h2>
-              <p className="mt-2 text-3xl font-bold tracking-tight  dark:text-white text-gray-900 sm:text-4xl">A faster way to production</p>
+              <h2 className="text-base font-semibold leading-7 text-indigo-600">Our Mission</h2>
+              <p className="mt-2 text-3xl font-bold tracking-tight  dark:text-white text-gray-900 sm:text-4xl">Unite. Collaborate. Innovate.</p>
               <p className="mt-6 text-lg leading-8  dark:text-gray-400 text-gray-600">
-                Accelerate your development with this powerful Next.js boilerplate
+              Empowering tech enthusiasts through collaboration and open-source innovation.
               </p>
               <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
                 {features.map((feature) => (
