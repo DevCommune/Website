@@ -18,7 +18,6 @@ model Profile {
   email          String
   name           String
   admin          Boolean @default(false)
-  role           String
   CommuneMember  Boolean @default(false)
   verified       Boolean @default(false)
   about          String  @db.LongText
