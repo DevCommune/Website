@@ -26,9 +26,13 @@ npm run email
 ```
 
 
-## Checkout Env variables (Don't Share with others)
+## Checkout .env variables (Don't Share with others)
+
 
 ```bash
+
+1.Create a .env file in the root directory or change only the existing .env.example to .env
+
 #cleck auth
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_cHVyZS1zYWxtb24tOTIuY2xlcmsuYWNjb3VudHMuZGV2JA
 CLERK_SECRET_KEY=sk_test_ehpbCQAl910E76VG2NNQpWriD1gYwIB1EGSBY6p4Tg
