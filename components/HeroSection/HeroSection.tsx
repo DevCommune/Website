@@ -30,13 +30,10 @@ export default function HeroSection() {
       </div>
       <div>
         <h1 className="scroll-m-20 px-3 text-3xl sm:text-4xl md:text-6xl font-semibold tracking-tight lg:text-7xl text-center max-w-[1120px] bg-gradient-to-b from-black to-gray-700/80 dark:from-white dark:to-slate-400 inline-block text-transparent bg-clip-text">
-          Develop and Enhance Your Skills with Us at Dev Commune
+          Empower Your Tech Journey with Dev Commune
         </h1>
         <p className="mx-auto max-w-[700px] text-gray-800 text-sm md:text-lg text-center lg:mt-2 mt-5 dark:text-gray-400 px-3">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates,
-          libero ducimus totam porro maxime delectus facilis asperiores
-          voluptatum accusamus ipsam dolore sapiente, maiores similique, eius
-          tenetur accusantium corporis autem blanditiis.
+          Elevate your tech skills with Dev Commune through hands-on workshops, engaging meetups, and open-source collaboration. Connect with professionals, access valuable resources, and receive mentorship for career growth. Empower your tech journey with collaborative learning and continuous support.
         </p>
         <div className="flex justify-center items-center gap-4 mt-6 lg:mt-3">
           {user ? (
