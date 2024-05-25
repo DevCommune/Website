@@ -139,7 +139,7 @@ const ProfileDetailsClient = ({
           )}
           {profile.whatsapp && (
             <a
-              href={profile.portfolio}
+              href={`https://wa.me/${profile.whatsapp}`}
               target="_blank"
               className="w-8 h-8 rounded-full bg-gray-300/80 dark:bg-slate-100/40 flex items-center justify-center"
             >

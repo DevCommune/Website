@@ -77,6 +77,8 @@ model Project {
   projectType        String  @db.MediumText
   techStack          String  @db.MediumText
   react              Boolean @default(false)
+  reactnative        Boolean @default(false)
+  flutter            Boolean @default(false)
   nextjs             Boolean @default(false)
   mongodb            Boolean @default(false)
   express            Boolean @default(false)

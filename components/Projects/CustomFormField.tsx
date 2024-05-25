@@ -12,6 +12,7 @@ import {
   SiMysql,
   SiShadcnui,
   SiTypescript,
+  SiFlutter
 } from "react-icons/si";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { TbBrandCpp } from "react-icons/tb";
@@ -244,6 +245,11 @@ export const CustomFormFieldCheckBoxProject = ({
                 />
               ) : name === "express" ? (
                 <SiExpress
+                  size={16}
+                  className="text-gray-600 dark:text-slate-200"
+                />
+              ) : name === "flutter" ? (
+                <SiFlutter
                   size={16}
                   className="text-gray-600 dark:text-slate-200"
                 />
