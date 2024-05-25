@@ -165,6 +165,7 @@ const ProjectCard = ({
                   className="text-gray-800 dark:text-slate-200 "
                 />
               )}
+              {/* TDODO: Add all tech name with icon  */}
             </div>
           </div>
           <Separator />

@@ -152,6 +152,8 @@ const ProfileCard = ({ profile }: { profile: ProfileWithProjects }) => {
                   />
                 </span>
               )}
+
+                 {/* TDODO: Add all tech name with icon if need  */}
             </div>
           </div>
           <div className="pt-1 flex items-center gap-2 mb-1.5">
@@ -206,6 +208,8 @@ const ProfileCard = ({ profile }: { profile: ProfileWithProjects }) => {
                   />
                 </span>
               )}
+
+                 {/* TDODO: Add all tech name with icon  */}
             </div>
           </div>
           <div className="pt-2 flex w-full justify-between items-center">
@@ -263,13 +267,15 @@ const ProfileCard = ({ profile }: { profile: ProfileWithProjects }) => {
           <div className="pt-3 flex items-center gap-2 pb-2">
             {profile.whatsapp && (
               <a
-                href={profile.portfolio}
+                href={profile.whatsapp}
                 target="_blank"
                 className="w-8 h-8 rounded-full bg-slate-100/10 flex items-center justify-center"
               >
                 <IoLogoWhatsapp size={20} className="text-emerald-500" />
               </a>
             )}
+
+            {/* redirect to whatsapp : add proper link for that  */}
             <a
               href={`/profile-details/${profile.id}`}
               className="text-md underline flex items-center"

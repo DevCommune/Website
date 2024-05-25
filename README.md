@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+## Run Client & Server
+
+
 
 ```bash
+#for client
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+#for database add .env variables
+npx prisma db generate
+npx prisma db push
+
+##(not need if there is no chnages created on schema.prisma file)
+
+
+#for checking DB studio
+npx prisma studio
+
+#for running the email server
+npm run email
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Checkout Env variables (Don't Share with others)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+#cleck auth
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_cHVyZS1zYWxtb24tOTIuY2xlcmsuYWNjb3VudHMuZGV2JA
+CLERK_SECRET_KEY=sk_test_ehpbCQAl910E76VG2NNQpWriD1gYwIB1EGSBY6p4Tg
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 
-## Learn More
+#databse secrets
+DATABASE_URL='mysql://avnadmin:AVNS_5b0-wi6NIvI4Uy60zCq@dev-commune-plura-db.i.aivencloud.com:28966/defaultdb?ssl-mode=REQUIRED'
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#uploadthing for image upload
+UPLOADTHING_SECRET=sk_live_12d72f75b30ba7ab9af67f8a8dbee7181956f917a2e5d4c5a20ea29581ada9f7
+UPLOADTHING_APP_ID=hpdwc2vfy6
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+#client url
+NEXTAUTH_URL=http://localhost:3000
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#Resend Api keys (for send email)
+RESEND_API_KEY = re_8XC4ZjXf_8w7Z381pN5i1yYSJaU8thNXD
+RESEND_EMAIL = dev-commune@resend.dev
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+```
