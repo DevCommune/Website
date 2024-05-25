@@ -93,6 +93,8 @@ model Project {
   typescript         Boolean @default(false)
   shadcn             Boolean @default(false)
   free               Boolean @default(false)
+  java               Boolean @default(false)
+  python             Boolean @default(false)
   profileId          String
   authorName         String
   authorProfileImage String

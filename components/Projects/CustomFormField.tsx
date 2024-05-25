@@ -12,7 +12,7 @@ import {
   SiMysql,
   SiShadcnui,
   SiTypescript,
-  SiFlutter
+  SiFlutter,
 } from "react-icons/si";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { TbBrandCpp } from "react-icons/tb";
@@ -41,7 +41,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import { FaHtml5, FaJava, FaNodeJs, FaPython } from "react-icons/fa";
+import { FaHtml5, FaJava, FaNodeJs, FaPython, FaReact } from "react-icons/fa";
 import { addNewProjectsSchema } from "@/schemas/addNewProjectsSchema";
 
 interface CustomInputFormFieldPropsProject {
@@ -70,8 +70,6 @@ export const CustomFormFieldProject = ({
     name,
     control,
   });
-
-  
 
   return (
     <FormField
@@ -250,6 +248,16 @@ export const CustomFormFieldCheckBoxProject = ({
                 />
               ) : name === "flutter" ? (
                 <SiFlutter
+                  size={16}
+                  className="text-gray-600 dark:text-slate-200"
+                />
+              ) : name === "java" ? (
+                <FaJava
+                  size={16}
+                  className="text-gray-600 dark:text-slate-200"
+                />
+              ) : name === "reactnative" ? (
+                <FaReact
                   size={16}
                   className="text-gray-600 dark:text-slate-200"
                 />

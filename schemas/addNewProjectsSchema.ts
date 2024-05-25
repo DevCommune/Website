@@ -38,4 +38,6 @@ export const addNewProjectsSchema = z.object({
   typescript: z.boolean().optional(),
   shadcn: z.boolean().optional(),
   free: z.boolean().optional(),
+  java:z.boolean().optional(),
+  python:z.boolean().optional(),
 });
