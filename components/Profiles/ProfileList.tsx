@@ -12,23 +12,10 @@ const ProfileList = ({ profiles }: { profiles: ProfileWithProjects[] }) => {
         {profiles.map((profile) => {
           return (
             <div key={profile.id}>
-              {profile.verified && <ProfileCard profile={profile} />}
+              <ProfileCard profile={profile} />
             </div>
           );
         })}
-      </div>
-
-      <h3 className="text-2xl underline my-4 ">All Our Members</h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-3 mb-10">
-        {
-          !profiles.map((profile) => {
-            return (
-              <div key={profile.id}>
-                <ProfileCard profile={profile} />
-              </div>
-            );
-          })
-        }
       </div>
     </div>
   );
