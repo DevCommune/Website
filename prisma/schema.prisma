@@ -51,6 +51,7 @@ model Profile {
   cpp            Boolean @default(false)
   java           Boolean @default(false)
   python         Boolean @default(false)
+
   javascript     Boolean @default(false)
   nextjs         Boolean @default(false)
   nodejs         Boolean @default(false)

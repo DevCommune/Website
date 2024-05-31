@@ -90,6 +90,7 @@ const AddProjectForm = ({
       typescript: false,
       shadcn: false,
       free: false,
+      tsx: false,
     },
   });
 
